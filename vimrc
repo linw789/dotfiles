@@ -57,6 +57,8 @@ nnoremap <leader>sc :execute 'Find (struct\|class\|enum) (.+ )*?<c-r><c-w>'<cr>
 nnoremap <leader>sw :execute 'Find <c-r><c-w>'<cr>
 nnoremap <leader>of :call CurtineIncSw()<CR>
 
+nnoremap <leader>ex :Explore<CR>
+
 " mappings for junegunn's Easy-Align plugin
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
@@ -141,4 +143,4 @@ set t_te=[?1049l
 set rtp+=~/.fzf
 
 " Set up Find command using ripgrep and fzf. Reference: https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --no-ignore --hidden --follow --glob "!.git/*" --glob "!*/build/*" --type cpp --type rust --type ruby --type-add "typescript:*.ts" --type typescript --type-add "javascript:*.js" --type javascript --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --no-ignore --hidden --follow --glob "!.git/*" --glob "!*/build/*" --type c --type cpp --type rust --type ruby --type-add "typescript:*.ts" --type typescript --type-add "javascript:*.js" --type javascript --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)

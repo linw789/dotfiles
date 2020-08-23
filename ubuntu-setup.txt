@@ -1,0 +1,29 @@
+## Switch left ctrl and left alt keys.
+
+- sudo apt-get install gnome-tweak-tool
+- Go to "Keyboard & Mouse" -> "Additional Layout" -> "Ctrl position".
+
+
+## Install latest vim
+
+sudo add-apt-repository ppa:jonathonf/vim
+sudo apt update
+sudo apt install vim
+
+## Install latest gcc 
+
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt update
+sudo apt install gcc-9 g++-9
+
+### To invoke gcc-9 on `gcc` command.
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-9
+
+## tmux not source .bashrc
+
+https://unix.stackexchange.com/questions/320465/new-tmux-sessions-do-not-source-bashrc-file
+
+## Set up ssh server
+
+- https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/
+- https://linuxize.com/post/how-to-setup-passwordless-ssh-login/

@@ -1,0 +1,7 @@
+## Command alias 
+
+https://stackoverflow.com/a/39459404
+
+- Create a folder 'C:/Alias'.
+- Create a batch for each command.
+- Use `%*` for passing multiple arguments.

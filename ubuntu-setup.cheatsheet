@@ -27,3 +27,7 @@ https://unix.stackexchange.com/questions/320465/new-tmux-sessions-do-not-source-
 
 - https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/
 - https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
+
+## Make bash auto-compelete case-insensitive
+
+Put `set completion-ignore-case on` in '.inputrc' file

@@ -1,0 +1,328 @@
+Bash
+===========
+
+'ps -p $$' shows the name of the current running shell
+
+Preserve newlines in variables set from command output
+https://stackoverflow.com/a/613580
+
+'if test -f "filename"; then` is equivalent to `if [ -f "filename" ]; then`.
+
+Prevent ssh from breaking out while loop
+https://stackoverflow.com/a/9393147
+`while read ip; do ssh2 $ip 'echo "'$ip'"' < /dev/null; done < hosts.txt`
+
+`cat host | xargs -I{} -P12 ssh2 {} 'sudo logbash --change-id "na:install_ebs_server_dependency" -c "yum install -y ebs-platform-repo-gamma.noarch && yum --disablerepo=* --enablerepo=ebs-platform-alinux1203-gamma install -y ebs-poseidon-anpa-2.1.4-0 && yum remove -y ebs-platform-repo-gamma.noarch"'`
+
+'$*' is expansion of all arguments, $1 $2 $3 ...
+https://stackoverflow.com/a/5163260
+
+Move to the beginning/end of line
+ctrl + a/e
+
+Clear the characters on the line before the current cursor position
+ctrl + u
+
+## Re-direct command output to null
+$command > /dev/null 2>&1
+
+Vim
+===========
+
+Type ctrl+v then esc to input esc character.
+
+zo - open fold
+zc - close fold
+zr - reduce fold level
+zm - one more fold level
+
+:diffupdate - recalculate the diff, only works if changes were made inside vimdiff, otherwise :e to refresh.
+
+:<ctrl-r>" 
+Paste yanked content to command, `"` is the default register. Also works in insert mode.
+
+## If seeing increasing number of spaces inserted after newlines while pasting into vim
+
+`:set paste` before pasting, `:set nopaste` after pasting.
+
+## Select quoted string without trailing spaces.
+
+use `v2i"` instead of `va"`. See `:help i'`
+
+## Macro
+
+`qa` enters macro mode with `a` register, type and do things on the same line. When done press q again.
+
+`:.,+20norm! @a` applied macro in register `a` to the current line and the next 20 lines.
+
+## Yank from the current line to a marked line
+
+- Enter normal mode, go to the start line
+- Type mk (Mark point with alphabet ‘k’ or use any other alphabet)
+- Move down (page down or whatever) and move to the end line
+- y'k will yank/copy all the lines from start to end
+- d'k will cut/delete all the lines from start to end
+
+## Start gdb inside vim
+
+:packadd termdebug
+:Termdebug vim
+
+When cursor is in code pane, <ctrl-w> + L move code pane to the right.
+
+## Move source pane to right in Termdebug
+
+:ctrl-W L
+
+Less
+=============
+
+## Make less retain color
+rg -tcpp 'VolumeType' --color=always | less -r
+
+tmux
+=============
+
+## ssh stuck
+
+type: <enter>~.
+
+## Navigate tmux 
+'ctrl-b + [' then jk or ctrl-u/d
+
+## Select and copy
+ctrl-b + [
+ctrl-v (optional for multi-select)
+space
+jkhl
+enter (copy selected text)
+
+## Split panes
+
+- ctrl-b + " split horizontally
+- ctrl-b + % split vertically
+
+## new window
+
+`ctrl-b + c`
+
+## Resize panes
+
+- ctr-b :resize-p (-U|D|L|R) offset_number
+
+## New session
+
+`:new -s session-name -c directory`
+
+## Tmux sessions survive ssh disconnection. Run 'tmux ls' to see a list of
+
+running sessions. And run 'tmux attach -t session_number' to attach the chose
+session. 
+
+## Switch sessions
+
+'ctrl-b (' or 'ctrl-b )'
+
+## List all sessions
+
+ctrl-b s, then arrow keys, then enter
+
+## rename session
+
+:rename-session [-t current-name] [new-name]
+
+## kill
+
+`kill-window` or `kill-session`
+
+## swap-pane
+
+`ctrl-b + {` or `ctrl-b + }`
+
+## vim stuck inside tmux
+
+Could be hitting `ctrl+s` accidentally, which turns off flow control in
+terminal. Hit `ctrl+q` to re-enable.
+
+SSH
+===========
+
+## Can't do `ssh <ip> 'rm ebs-server-18*'`, because shell would expand asterisk before ssh.
+Use `ssh <ip> 'find . -name ""ebs-server-18*' -type f -exec rm {} \;` instead.
+
+## ssh stuck
+
+enter ~ .
+
+sed
+===========
+
+## Change 
+
+Git
+===========
+
+## git checkout --track origin/remote-branch-name
+
+## git push -u origin feature-branch-name
+
+## Delete local and remote branches
+
+- git branch -d <branch-name> (or -D to force)
+- git push <remote-name> --delete <branch-name>
+
+## git show --stat --oneline [HEAD|commit-sha] # show file names in a commit
+
+## git stash show [-p] stash@{number}
+
+## git stash push -m "stash message" file-path
+
+## pull the specific branch
+
+git pull <remote-name> <branch-name>
+
+e.g. `git pull origin mainline`
+
+## change stashed messages: directly change it in the file '.git/logs/refs/stash'.
+
+## show remote tracking branches of the local branches
+git branch -vv
+
+## log only a certain author
+git log --author=linwn
+
+## Unstage files
+git reset -- filepath
+
+## Push up through a given commit
+git push <remotename> <commit SHA>:<remotebranchname>
+
+## Fix "head detached at ..."
+git checkout master
+
+## Log filenames
+git log --name-status
+
+## revert specific files to before 12dbf4 
+git checkout 12dbf4~1 -- src/file-to-restore.h
+
+Tig
+===========
+
+grep
+===========
+
+## grep -HRn --include="gtest*.cpp" "search-string" ./
+NOTE: use double qoutes for --include=
+
+## grep -RHn '--include=*.'{h,cpp} --exclude-dir={build,temp} search-string /path/xyz
+- R recursive
+- H show file name
+- n show line number
+- '--include=*.'{h,cpp} include .h and .cpp files. See: https://stackoverflow.com/a/44121121
+- --exclude-dir={build,temp} exclude directories named 'build' and 'temp'
+
+## grep -P -RHn '(?>!Mapper)StartTask' gtest-*.cpp
+Search 'StartTask' in gtest files that doesn't start with 'Mapper'
+-P use perl like regex
+
+scp 
+==========
+
+## send from local to remote: 
+scp file-name linwn@dev-dsk-linwn-2b-a6132390.us-west-2.amazon.com:~/some-remote-dir/
+
+FZF
+==========
+
+find * -type f | fzf > selected
+
+## vim prefix-string**Tab
+'**Tab' triggers fzf search 
+
+# find command
+
+## find . -name "gtest*.cpp"
+NOTE: you have to supply dot to give the 'find' command some place to start with.
+
+Brazil Build
+================
+
+## Update version set
+
+brazil ws --use --versionset version-set-name (find version-set-name in code.amazon.com repo -> Releases)
+
+## remove all build artifacts
+
+brazil ws clean 
+
+GDB
+================
+
+## set print pretty on
+
+## set print object on
+print the derived class type of a pointer declared as the parent class pointer type.
+
+## run googletest with arguments
+`gdb --args src/gtest_coap_tcp_listener '--gtest_filter=*testname*'`
+
+## Show typeinfo of an variable
+`ptype var`
+
+Regex
+================
+
+MacBook
+================
+
+## Install ReverseScrolling
+
+I use LogiTech MX Master. After giving access to Logi Options Daemon, the scroll wheel defaults 
+to reverse scrolling and the back button starts working.
+
+## Install Karabiner-Elements and swap left-command and left-control
+
+Put the following in ~/.config/karabiner/karabiner.json under "complex_modifications"->"rules":
+~~~json
+{
+    "description": "Left command to left ctrl when in Alacritty",
+    "manipulators": [
+        {
+            "type": "basic",
+            "from": {
+                "key_code": "left_command"
+            },
+            "to": [
+                {
+                    "key_code": "left_control"
+                }
+            ],
+            "conditions": [
+                {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": [
+                        "^io\\.alacritty$"
+                    ]
+                }
+            ]
+        }
+    ]
+}
+~~~
+
+Makefile
+==================
+
+## print variables
+
+$(info VAR="$(VAR)")
+
+## targets without commands
+
+http://aggregate.org/rfisher/Tutorials/Make/make3.html
+
+Alacritty
+==================
+
+## color scheme: https://github.com/eendroroy/alacritty-theme/blob/master/themes/darcula.yaml

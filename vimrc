@@ -133,5 +133,8 @@ endif
 set t_ti=[?1049h
 set t_te=[?1049l
 
+" disable beeping
+set vb t_vb=
+
 " Set up Find command using ripgrep and fzf. Reference: https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --no-ignore --hidden --follow --glob "!.git/*" --glob "!*/build/*" --type c --type cpp --type rust --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)

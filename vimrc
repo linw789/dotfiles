@@ -15,22 +15,42 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'tomasiser/vim-code-dark'
 
-Plug 'MattesGroeger/vim-bookmarks'
-
 Plug 'ycm-core/YouCompleteMe'
 
 Plug 'ericcurtin/CurtineIncSw.vim'
 
 Plug 'jiangmiao/auto-pairs'
 
+Plug 'christianfosli/wsl-copy'
+
 " Initialize plugin system
 call plug#end()
 
+""""""""""""""""""""""""
+" Global Vairables
+""""""""""""""""""""""""
+
 let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
-let g:ycm_show_diagnostics_ui = 0
+" let g:ycm_show_diagnostics_ui = 0
 let g:ycm_auto_hover = ''
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_goto_buffer_command = 'split-or-existing-window'
+let g:ycm_language_server =
+\ [
+\   {
+\     'name': 'rust',
+\     'cmdline': ['rust-analyzer'],
+\     'filetypes': ['rust'],
+\     'project_root_files': ['Cargo.toml']
+\   }
+\ ]
+set completeopt-=preview
 
 let g:bookmark_auto_close = 1
+
+""""""""""""""""""""""""
+" Key Mappings
+""""""""""""""""""""""""
 
 let mapleader=','
 
@@ -50,9 +70,16 @@ nnoremap <leader>of :call CurtineIncSw()<CR>
 
 nnoremap <leader>ex :Explore<CR>
 
+"YouCompleteMe functionalities
+nnoremap <F12> :rightbelow vertical YcmCompleter GoToDefinition<cr>
+
 " mappings for junegunn's Easy-Align plugin
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+""""""""""""""""""""""""
+" Micsellaneous
+""""""""""""""""""""""""
 
 " Fix the backspace issue where it won't delete from end-of-line.
 set backspace=indent,eol,start
@@ -75,8 +102,7 @@ set noswapfile
 " always show filename in status bar even only one buffer is present
 set laststatus=2
 
-" Auto refresh content if modified outside vim. Have to set both of the
-" following two lines.
+" Auto refresh content if modified outside vim. Have to set both of the following two lines.
 set autoread
 au CursorHold * checktime
 
@@ -135,6 +161,9 @@ set t_te=[?1049l
 
 " disable beeping
 set vb t_vb=
+
+" mouse support
+set mouse=a
 
 " Set up Find command using ripgrep and fzf. Reference: https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --no-ignore --hidden --follow --glob "!.git/*" --glob "!*/build/*" --type c --type cpp --type rust --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)

@@ -17,9 +17,9 @@ Plug 'tomasiser/vim-code-dark'
 
 Plug 'ycm-core/YouCompleteMe'
 
-Plug 'ericcurtin/CurtineIncSw.vim'
+Plug 'LunarWatcher/auto-pairs', { 'tag': '*'  }
 
-Plug 'jiangmiao/auto-pairs'
+Plug 'ericcurtin/CurtineIncSw.vim'
 
 Plug 'christianfosli/wsl-copy'
 
@@ -34,7 +34,7 @@ let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
 " let g:ycm_show_diagnostics_ui = 0
 let g:ycm_auto_hover = ''
 let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_goto_buffer_command = 'split-or-existing-window'
+let g:ycm_goto_buffer_command = 'same-buffer'
 let g:ycm_language_server =
 \ [
 \   {
@@ -48,9 +48,7 @@ set completeopt-=preview
 
 let g:bookmark_auto_close = 1
 
-""""""""""""""""""""""""
-" Key Mappings
-""""""""""""""""""""""""
+let g:AutoPairsCompatibleMaps = 0
 
 let mapleader=','
 
@@ -71,15 +69,11 @@ nnoremap <leader>of :call CurtineIncSw()<CR>
 nnoremap <leader>ex :Explore<CR>
 
 "YouCompleteMe functionalities
-nnoremap <F12> :rightbelow vertical YcmCompleter GoToDefinition<cr>
+nnoremap <F12> :YcmCompleter GoToDefinition<cr>
 
 " mappings for junegunn's Easy-Align plugin
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-
-""""""""""""""""""""""""
-" Micsellaneous
-""""""""""""""""""""""""
 
 " Fix the backspace issue where it won't delete from end-of-line.
 set backspace=indent,eol,start

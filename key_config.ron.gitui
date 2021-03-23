@@ -84,7 +84,7 @@
         ),
     ),
     open_help: (
-        code: Char('h'),
+        code: Char('?'),
         modifiers: (
             bits: 0,
         ),

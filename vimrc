@@ -30,7 +30,7 @@ call plug#end()
 " Global Vairables
 """"""""""""""""""""""""
 
-let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
+let g:ycm_path_to_python_interpreter = '/home/linuxbrew/.linuxbrew/bin/python3'
 " let g:ycm_show_diagnostics_ui = 0
 let g:ycm_auto_hover = ''
 let g:ycm_autoclose_preview_window_after_completion = 1

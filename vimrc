@@ -19,6 +19,7 @@ Plug 'ycm-core/YouCompleteMe'
 
 Plug 'LunarWatcher/auto-pairs', { 'tag': '*'  }
 
+" Toggle between *.c* and *.h* buffers.
 Plug 'ericcurtin/CurtineIncSw.vim'
 
 Plug 'christianfosli/wsl-copy'
@@ -44,6 +45,9 @@ let g:ycm_language_server =
 \     'project_root_files': ['Cargo.toml']
 \   }
 \ ]
+" Disable diagnostics ui for c/c++ files, because it's inaccurate.
+let g:ycm_show_diagnostics_ui = 0
+
 set completeopt-=preview
 
 let g:bookmark_auto_close = 1

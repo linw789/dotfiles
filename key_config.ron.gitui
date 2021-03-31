@@ -35,6 +35,18 @@
             bits: 1,
         ),
     ),
+    focus_workdir: (
+        code: Char('w'),
+        modifiers: (
+            bits: 0,
+        ),
+    ),
+    focus_stage: (
+        code: Char('s'),
+        modifiers: (
+            bits: 0,
+        ),
+    ),
     focus_right: (
         code: Char('l'),
         modifiers: (
@@ -48,13 +60,13 @@
         ),
     ),
     focus_above: (
-        code: Char('k'),
+        code: Up,
         modifiers: (
             bits: 0,
         ),
     ),
     focus_below: (
-        code: Char('j'),
+        code: Down,
         modifiers: (
             bits: 0,
         ),
@@ -138,13 +150,13 @@
         ),
     ),
     shift_up: (
-        code: Up,
+        code: Char('k'),
         modifiers: (
             bits: 1,
         ),
     ),
     shift_down: (
-        code: Down,
+        code: Char('j'),
         modifiers: (
             bits: 1,
         ),
@@ -175,18 +187,6 @@
     ),
     status_ignore_file: (
         code: Char('i'),
-        modifiers: (
-            bits: 0,
-        ),
-    ),
-    diff_stage_lines: (
-        code: Char('s'),
-        modifiers: (
-            bits: 0,
-        ),
-    ),
-    diff_reset_lines: (
-        code: Char('d'),
         modifiers: (
             bits: 0,
         ),
@@ -275,13 +275,7 @@
             bits: 0,
         ),
     ),
-    force_push: (
-        code: Char('P'),
-        modifiers: (
-            bits: 1,
-        ),
-    ),
-    pull: (
+    fetch: (
         code: Char('f'),
         modifiers: (
             bits: 0,

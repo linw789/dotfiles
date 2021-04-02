@@ -1,4 +1,5 @@
 set nocompatible              " be iMproved, required
+set encoding=utf-8
 
 set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 
@@ -11,6 +12,8 @@ call plug#begin('~/.vim/plugged')
 "
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
 
 Plug 'tomasiser/vim-code-dark'
@@ -87,6 +90,7 @@ set number relativenumber
 set expandtab
 set nojoinspaces
 set shiftwidth=4
+set tabstop=4
 
 set ignorecase smartcase
 set incsearch

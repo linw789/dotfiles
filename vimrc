@@ -27,6 +27,8 @@ Plug 'ericcurtin/CurtineIncSw.vim'
 
 Plug 'christianfosli/wsl-copy'
 
+Plug 'pprovost/vim-ps1'
+
 " Initialize plugin system
 call plug#end()
 

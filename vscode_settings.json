@@ -1,0 +1,58 @@
+{
+  "workbench.editor.showTabs": false,
+  "workbench.activityBar.visible": false,
+
+  "editor.lineNumbers": "relative",
+  "editor.fontSize": 15,
+  "editor.tabCompletion": "on",
+
+  "rust-analyzer.lens.enable": true,
+
+  // vim settings
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+
+  "vim.leader": ",",
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-k>"],
+      "after": ["5", "k"]
+    },
+    {
+      "before": ["<C-j>"],
+      "after": ["5", "j"]
+    },
+    {
+      "before": ["<leader>", "q"],
+      "commands": [
+        "workbench.action.closeEditorsInGroup"       
+      ]
+    },
+    {
+      "before": ["<leader>", "s"],
+      "commands": [
+        "workbench.action.splitEditorDown",
+        "search.action.openEditor"
+      ]
+    }
+  ],
+
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false,
+    "<C-c>": false,
+    "<C-v>": false,
+    // VSCode default keybindings to toggle sidebar visibility
+    "<C-b>": false
+  },
+  "editor.minimap.enabled": false
+}

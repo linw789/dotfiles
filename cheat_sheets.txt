@@ -1,6 +1,14 @@
 Powershell
 ===========
 
+## Create directory
+
+New-Item -Path "C:\" -Name "logfiles" -ItemType "directory"
+
+## Delete directory
+`Remove-Item -Recurse -Force some_dir`
+
+
 ## Store SSH key passphrase
 
 https://gist.github.com/danieldogeanu/16c61e9b80345c5837b9e5045a701c99

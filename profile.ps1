@@ -28,6 +28,9 @@ function Prompt {
 }
 
 # Script Aliases 
-$ScriptsDir = "C:\Projects\Cmds"
+$ScriptsDir = "C:\Projects\DotFiles\Scripts"
 Set-Alias -Name pd -Value $ScriptsDir\projects_dir.ps1
 Set-Alias -Name ll -Value $ScriptsDir\ll.bat
+
+# PSFzf
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'

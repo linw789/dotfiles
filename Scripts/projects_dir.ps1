@@ -3,7 +3,8 @@ $ArgName = $Args[0]
 $ProjectNames = @{ `
     "dd" = "C:\DevDriver\devdriver"; `
     "dot" = "C:\Projects\DotFiles"; `
-    "cmds" = "C:\Projects\Cmds" `
+    "d3dsamples" = "C:\Projects\D3D12_Samples\Samples\Desktop"; `
+    "prj" =  "C:\Projects"
 }
 
 if ($ArgName -ne $null -and $ProjectNames.ContainsKey($ArgName)) {

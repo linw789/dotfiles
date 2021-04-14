@@ -52,7 +52,9 @@
     "<C-c>": false,
     "<C-v>": false,
     // VSCode default keybindings to toggle sidebar visibility
-    "<C-b>": false
+    "<C-b>": false,
+    // VSCode default keybindings for searching symbols
+    "<C-t>": false
   },
   "editor.minimap.enabled": false
 }

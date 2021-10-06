@@ -1,10 +1,14 @@
 {
   "workbench.editor.showTabs": false,
-  "workbench.activityBar.visible": false,
-
   "editor.lineNumbers": "relative",
   "editor.fontSize": 15,
   "editor.tabCompletion": "on",
+  "editor.minimap.enabled": false,
+
+  "[json]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2
+  },
 
   "rust-analyzer.lens.enable": true,
 
@@ -14,38 +18,78 @@
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
-
   "vim.leader": ",",
   "vim.insertModeKeyBindings": [
     {
-      "before": ["j", "k"],
-      "after": ["<Esc>"]
+      "before": [
+        "j",
+        "k"
+      ],
+      "after": [
+        "<Esc>"
+      ]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": ["<C-k>"],
-      "after": ["5", "k"]
-    },
-    {
-      "before": ["<C-j>"],
-      "after": ["5", "j"]
-    },
-    {
-      "before": ["<leader>", "q"],
-      "commands": [
-        "workbench.action.closeEditorsInGroup"       
+      "before": [
+        "<C-k>"
+      ],
+      "after": [
+        "5",
+        "k"
       ]
     },
     {
-      "before": ["<leader>", "s"],
+      "before": [
+        "<C-j>"
+      ],
+      "after": [
+        "5",
+        "j"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "q"
+      ],
+      "commands": [
+        "workbench.action.closeEditorsInGroup"
+      ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "s"
+      ],
       "commands": [
         "workbench.action.splitEditorDown",
         "search.action.openEditor"
       ]
+    },
+    {
+      "before": [
+        "<leader>",
+        "h"
+      ],
+      "commands": [
+        "rust-analyzer.toggleInlayHints"
+      ],
+      "when": "inRustProject"
+    },
+    {
+      "before": [
+        "<leader>",
+        "o",
+        "f"
+      ],
+      "commands": [
+        "C_Cpp.SwitchHeaderSource"
+      ],
+      "when": "editorTextFocus && editorLangId == 'c' || editorTextFocus && editorLangId == 'cpp' || editorTextFocus && editorLangId == 'cuda-cpp'"
     }
   ],
-
   "vim.handleKeys": {
     "<C-a>": false,
     "<C-f>": false,
@@ -56,5 +100,5 @@
     // VSCode default keybindings for searching symbols
     "<C-t>": false
   },
-  "editor.minimap.enabled": false
+  "security.workspace.trust.untrustedFiles": "open",
 }

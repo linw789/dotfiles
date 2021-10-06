@@ -1,7 +1,8 @@
 $ArgName = $Args[0]
 
 $ProjectNames = @{ `
-    "dd" = "C:\DevDriver\devdriver"; `
+    "dd" = "C:\AMD_Repos\devdriver"; `
+    "ddtool" = "C:\AMD_Repos\dd-internal-tools"; `
     "dot" = "C:\Projects\DotFiles"; `
     "d3dsamples" = "C:\Projects\D3D12_Samples\Samples\Desktop"; `
     "prj" =  "C:\Projects"

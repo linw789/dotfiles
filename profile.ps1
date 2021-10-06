@@ -21,8 +21,8 @@ function Prompt {
     #Decorate the CMD Prompt
     Write-host ""
     Write-host ($(if ($IsAdmin) { 'Elevated ' } else { '' })) -BackgroundColor DarkRed -ForegroundColor White -NoNewline
-	Write-host "$CmdPromptFullPath "  -ForegroundColor White -BackgroundColor DarkGray -NoNewline
-    Write-host "$LastCmdFinishTime " -ForegroundColor White
+	Write-host "$CmdPromptFullPath"  -ForegroundColor White -BackgroundColor DarkGray -NoNewline
+    Write-host " $LastCmdFinishTime " -ForegroundColor White
     Write-host "[$elapsedTime] " -NoNewline -ForegroundColor Green
     return "> "
 }
@@ -30,7 +30,7 @@ function Prompt {
 # Script Aliases 
 $ScriptsDir = "C:\Projects\DotFiles\Scripts"
 Set-Alias -Name pd -Value $ScriptsDir\projects_dir.ps1
-Set-Alias -Name ll -Value $ScriptsDir\ll.bat
+Set-Alias -Name ll -Value $ScriptsDir\list.ps1
 
 # PSFzf
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'

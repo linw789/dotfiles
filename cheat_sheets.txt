@@ -103,9 +103,11 @@ tmux
 type: <enter>~.
 
 ## Navigate tmux 
+
 'ctrl-b + [' then jk or ctrl-u/d
 
 ## Select and copy
+
 ctrl-b + [
 ctrl-v (optional for multi-select)
 space
@@ -145,6 +147,10 @@ ctrl-b s, then arrow keys, then enter
 ## rename session
 
 :rename-session [-t current-name] [new-name]
+
+## Set starting dir of the current session
+
+:attach-session -t . -c <dir>
 
 ## kill
 

@@ -1,13 +1,16 @@
 Powershell
 ===========
 
+## Remove an environment variable
+
+Remove-Item -Path Env:\<env-var-name>
+
 ## Create directory
 
 New-Item -Path "C:\" -Name "logfiles" -ItemType "directory"
 
 ## Delete directory
 `Remove-Item -Recurse -Force some_dir`
-
 
 ## Store SSH key passphrase
 

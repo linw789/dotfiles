@@ -8,7 +8,7 @@ function Prompt {
 
     #Calculate execution time of last cmd and convert to milliseconds, seconds or minutes
     $LastCommand = Get-History -Count 1
-    if ($lastCommand) { $RunTime = ($lastCommand.EndExecutionTime - $lastCommand.StartExecutionTime) }
+    if ($LastCommand) { $RunTime = ($LastCommand.EndExecutionTime - $LastCommand.StartExecutionTime) }
 
     if ($RunTime.Minutes -gt 0) {
         $ElapsedTime = -join ($RunTime.Minutes, " min ", $RunTime.Seconds, " sec")
@@ -27,7 +27,7 @@ function Prompt {
     return "> "
 }
 
-# Script Aliases 
+# Script Aliases
 $ScriptsDir = "C:\Projects\DotFiles\Scripts"
 Set-Alias -Name pd -Value $ScriptsDir\projects_dir.ps1
 Set-Alias -Name ll -Value $ScriptsDir\list.ps1

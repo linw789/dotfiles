@@ -5,12 +5,26 @@
   "editor.tabCompletion": "on",
   "editor.minimap.enabled": false,
 
+  "files.trimTrailingWhitespace": true,
+  "files.exclude": {
+    "**/.git": false
+  },
+
   "[json]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2
   },
+  "[cpp]": {
+    "editor.wordWrap": "off"
+  },
 
-  "rust-analyzer.lens.enable": true,
+  "rust-analyzer.lens.enable": false,
+
+  "C_Cpp.dimInactiveRegions": false,
+
+  "security.workspace.trust.untrustedFiles": "open",
+
+  "cmake.configureOnOpen": false,
 
   // vim settings
   "vim.easymotion": true,
@@ -99,8 +113,5 @@
     "<C-b>": false,
     // VSCode default keybindings for searching symbols
     "<C-t>": false
-  },
-  "security.workspace.trust.untrustedFiles": "open",
-  "editor.minimap.enabled": false,
-  "cmake.configureOnOpen": false
+  }
 }

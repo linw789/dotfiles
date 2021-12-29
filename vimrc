@@ -87,6 +87,8 @@ nmap ga <Plug>(EasyAlign)
 " Fix the backspace issue where it won't delete from end-of-line.
 set backspace=indent,eol,start
 
+set ruler
+
 set number relativenumber
 
 set expandtab

@@ -21,6 +21,7 @@ $ProjectNames_WorkLaptop = @{ `
 $ProjectNames_PersonalLaptop = @{ `
     "prj" =  "C:\Projects"
     "dot" = "C:\Projects\DotFiles"
+    "super" = "C:\Projects\SuperCleo"
 }
 
 $HostName = [System.Net.Dns]::GetHostName()

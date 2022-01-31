@@ -18,9 +18,6 @@
   "[cpp]": {
     "editor.wordWrap": "off"
   },
-  "[rust]": {
-    "editor.formatOnSave": true
-  },
 
   "rust-analyzer.lens.enable": false,
   "rust-analyzer.inlayHints.enable": false,

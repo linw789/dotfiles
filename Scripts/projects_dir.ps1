@@ -2,7 +2,7 @@ $ArgName = $Args[0]
 
 $ProjectNames_WorkPC = @{ `
     "dd" = "C:\AMD_Repos\devdriver"; `
-    "ddtool" = "C:\AMD_Repos\internal-tools"; `
+    "tools" = "C:\AMD_Repos\internal-tools"; `
     "pal" = "C:\AMD_Repos\pal"; `
     "dot" = "C:\Projects\DotFiles"; `
     "d3dsamples" = "C:\Projects\D3D12_Samples\Samples\Desktop"; `
@@ -10,12 +10,12 @@ $ProjectNames_WorkPC = @{ `
 }
 
 $ProjectNames_WorkLaptop = @{ `
-    "dd" = "C:\AMD_Repos\devdriver"; `
-    "ddtool" = "C:\AMD_Repos\internal-tools"; `
-    "pal" = "C:\AMD_Repos\pal"; `
-    "dot" = "C:\Projects\DotFiles"; `
-    "d3dsamples" = "C:\Projects\D3D12_Samples\Samples\Desktop"; `
-    "prj" =  "C:\Projects"
+    "dd" = "C:\develop\amd\devdriver"; `
+    "tools" = "C:\develop\amd\internal-tools"; `
+    "pal" = "C:\develop\amd\pal"; `
+    "dot" = "C:\develop\dotfiles"; `
+    "d3dsamples" = "C:\develop\D3D12_Samples\Samples\Desktop"; `
+    "prj" =  "C:\develop"
 }
 
 $ProjectNames_PersonalLaptop = @{ `
@@ -28,9 +28,9 @@ $HostName = [System.Net.Dns]::GetHostName()
 
 if ($HostName -eq "LAPTOP-F9KFD4OS") {
     $ProjectNames = $ProjectNames_PersonalLaptop
-} elseif ($HostName = "workpc") {
+} elseif ($HostName -eq "workpc") {
     $ProjectNames = $ProjectNames_WorkPC
-} elseif ($HostName = "worklaptop") {
+} elseif ($HostName -eq "BDCLX-LINWANG") {
     $ProjectNames = $ProjectNames_WorkLaptop
 } else {
     Write-Output "Unrecognized host name: $HostName."

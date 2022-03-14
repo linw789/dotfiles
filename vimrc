@@ -20,7 +20,7 @@ Plug 'tomasiser/vim-code-dark'
 
 Plug 'ycm-core/YouCompleteMe'
 
-Plug 'LunarWatcher/auto-pairs', { 'tag': '*'  }
+Plug 'LunarWatcher/auto-pairs', { 'tag': '*'  } 
 
 " Toggle between *.c* and *.h* buffers.
 Plug 'ericcurtin/CurtineIncSw.vim'

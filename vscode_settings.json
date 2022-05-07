@@ -5,6 +5,7 @@
   "editor.fontSize": 15,
   "editor.tabCompletion": "on",
   "editor.minimap.enabled": false,
+  "editor.bracketPairColorization.enabled": false,
 
   "files.trimTrailingWhitespace": true,
   "files.exclude": {
@@ -22,7 +23,7 @@
   "rust-analyzer.lens.enable": false,
   "rust-analyzer.inlayHints.enable": false,
 
-  "C_Cpp.dimInactiveRegions": false,
+  "C_Cpp.dimInactiveRegions": true,
 
   "security.workspace.trust.untrustedFiles": "open",
 
@@ -105,6 +106,9 @@
       ],
       "when": "editorTextFocus && editorLangId == 'c' || editorTextFocus && editorLangId == 'cpp' || editorTextFocus && editorLangId == 'cuda-cpp'"
     }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+
   ],
   "vim.handleKeys": {
     "<C-a>": false,

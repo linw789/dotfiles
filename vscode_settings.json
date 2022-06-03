@@ -5,6 +5,7 @@
   "editor.fontSize": 15,
   "editor.tabCompletion": "on",
   "editor.minimap.enabled": false,
+  "editor.bracketPairColorization.enabled": false,
 
   "files.trimTrailingWhitespace": true,
   "files.exclude": {

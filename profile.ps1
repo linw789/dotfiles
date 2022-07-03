@@ -27,8 +27,15 @@ function Prompt {
     return "> "
 }
 
+$HostName = [System.Net.Dns]::GetHostName()
+if ($HostName -eq "LAPTOP-F9KFD4OS") {
+    $ScriptsDir = "C:\Projects\DotFiles\Scripts"
+} elseif ($HostName -eq "BDCLX-LINWANG") {
+    $ScriptsDir = "C:\develop\DotFiles\Scripts"
+} else {
+    $ScriptsDir = "C:\Projects\DotFiles\Scripts"
+}
 # Script Aliases
-$ScriptsDir = "C:\Projects\DotFiles\Scripts"
 Set-Alias -Name pd -Value $ScriptsDir\projects_dir.ps1
 Set-Alias -Name ll -Value $ScriptsDir\list.ps1
 

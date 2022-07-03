@@ -15,7 +15,8 @@ $ProjectNames_WorkLaptop = @{ `
     "pal" = "C:\develop\amd\pal"; `
     "dot" = "C:\develop\dotfiles"; `
     "d3dsamples" = "C:\develop\D3D12_Samples\Samples\Desktop"; `
-    "prj" =  "C:\develop"
+    "prj" =  "C:\develop"; `
+    "dxcp" = "C:\develop\amd\drivers\drivers\dx\dxcp"
 }
 
 $ProjectNames_PersonalLaptop = @{ `

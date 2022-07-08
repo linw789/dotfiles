@@ -6,6 +6,7 @@
   "editor.tabCompletion": "on",
   "editor.minimap.enabled": false,
   "editor.bracketPairColorization.enabled": false,
+  "editor.inlayHints.enabled": false,
 
   "files.trimTrailingWhitespace": true,
   "files.exclude": {
@@ -21,13 +22,18 @@
   },
 
   "rust-analyzer.lens.enable": false,
-  "rust-analyzer.inlayHints.enable": false,
 
   "C_Cpp.dimInactiveRegions": true,
 
   "security.workspace.trust.untrustedFiles": "open",
 
   "cmake.configureOnOpen": false,
+
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+
+  "remote.SSH.remotePlatform": {
+    "DESKTOP-N9CIN42.amd.com": "windows"
+  },
 
   // vim settings
   "vim.easymotion": true,
@@ -121,7 +127,7 @@
     "<C-t>": false
   },
 
-  // Neovim
+  // neovim
   "vscode-neovim.highlightGroups.highlights": {
     "Directory": "vim",
     "IncSearch": {
@@ -139,5 +145,5 @@
     "Substitute": "vim"
   },
   "vscode-neovim.neovimExecutablePaths.win32": "C:\\Program Files\\Neovim\\bin\\nvim.exe",
-  "vscode-neovim.neovimInitVimPaths.win32": "C:\\Projects\\DotFiles\\init.vim"
+  "vscode-neovim.neovimInitVimPaths.win32": "$HOME\\init.vim"
 }

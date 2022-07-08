@@ -20,9 +20,11 @@ $ProjectNames_WorkLaptop = @{ `
 }
 
 $ProjectNames_PersonalLaptop = @{ `
-    "prj" =  "C:\Projects"
-    "dot" = "C:\Projects\DotFiles"
-    "super" = "C:\Projects\SuperCleo"
+    "prj" =  "C:\Projects"; `
+    "dot" = "C:\Projects\DotFiles"; `
+    "super" = "C:\Projects\SuperCleo"; `
+    "vkrust" = "C:\Projects\VulkanExamplesRust"; `
+    "vkcpp" = "C:\Projects\VulkanExamplesCpp"
 }
 
 $HostName = [System.Net.Dns]::GetHostName()

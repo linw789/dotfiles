@@ -111,6 +111,18 @@
         "C_Cpp.SwitchHeaderSource"
       ],
       "when": "editorTextFocus && editorLangId == 'c' || editorTextFocus && editorLangId == 'cpp' || editorTextFocus && editorLangId == 'cuda-cpp'"
+    },
+    {
+      "before": [
+        "<leader>",
+        "d",
+        "b"
+      ],
+      "commands": [
+        "workbench.action.closeEditorsInGroup",
+        "workbench.action.terminal.toggleTerminal"
+      ],
+      "when": "editorTextFocus"
     }
   ],
   "vim.visualModeKeyBindingsNonRecursive": [

@@ -1,12 +1,11 @@
 $ArgName = $Args[0]
 
 $ProjectNames_WorkPC = @{ `
-    "dd" = "C:\AMD_Repos\devdriver"; `
-    "tools" = "C:\AMD_Repos\internal-tools"; `
-    "pal" = "C:\AMD_Repos\pal"; `
+    "dd" = "C:\develop\devdriver"; `
+    "tools" = "C:\develop\internal-tools"; `
+    "pal" = "C:\develop\pal"; `
     "dot" = "C:\Projects\DotFiles"; `
-    "d3dsamples" = "C:\Projects\D3D12_Samples\Samples\Desktop"; `
-    "prj" =  "C:\Projects"
+    "dxcp" = "C:\develop\dxcp\drivers\dx\dxcp"
 }
 
 $ProjectNames_WorkLaptop = @{ `
@@ -32,7 +31,7 @@ $HostName = [System.Net.Dns]::GetHostName()
 
 if ($HostName -eq "LAPTOP-F9KFD4OS") {
     $ProjectNames = $ProjectNames_PersonalLaptop
-} elseif ($HostName -eq "workpc") {
+} elseif ($HostName -eq "DESKTOP-N9CIN42") {
     $ProjectNames = $ProjectNames_WorkPC
 } elseif ($HostName -eq "BDCLX-LINWANG") {
     $ProjectNames = $ProjectNames_WorkLaptop

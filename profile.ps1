@@ -40,4 +40,4 @@ Set-Alias -Name pd -Value $ScriptsDir\projects_dir.ps1
 Set-Alias -Name ll -Value $ScriptsDir\list.ps1
 
 # PSFzf
-Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
+Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzyGitStatus

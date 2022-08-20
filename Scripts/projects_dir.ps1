@@ -27,10 +27,17 @@ $ProjectNames_PersonalLaptop = @{ `
     "vkcpp" = "C:\Projects\VulkanExamplesCpp"
 }
 
+$ProjectNames_PersonalPC = @{ `
+    "prj" =  "C:\Projects"; `
+    "dot" = "C:\Projects\dotfiles";
+}
+
 $HostName = [System.Net.Dns]::GetHostName()
 
 if ($HostName -eq "LAPTOP-F9KFD4OS") {
     $ProjectNames = $ProjectNames_PersonalLaptop
+} elseif ($HostName -eq "DESKTOP-388OQ16") {
+    $ProjectNames = $ProjectNames_PersonalPC
 } elseif ($HostName -eq "DESKTOP-N9CIN42") {
     $ProjectNames = $ProjectNames_WorkPC
 } elseif ($HostName -eq "BDCLX-LINWANG") {

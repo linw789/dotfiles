@@ -5,7 +5,8 @@ $ProjectNames_WorkPC = @{ `
     "tools" = "C:\develop\internal-tools"; `
     "pal" = "C:\develop\pal"; `
     "dot" = "C:\Projects\DotFiles"; `
-    "dxcp" = "C:\develop\dxcp\drivers\dx\dxcp"
+    "dxcp" = "C:\develop\dxcp\drivers\dx\dxcp"; `
+    "prj" = "C:\projects"
 }
 
 $ProjectNames_WorkLaptop = @{ `

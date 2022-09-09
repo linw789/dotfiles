@@ -20,7 +20,7 @@ Plug 'tomasiser/vim-code-dark'
 
 Plug 'ycm-core/YouCompleteMe'
 
-Plug 'LunarWatcher/auto-pairs', { 'tag': '*'  } 
+Plug 'LunarWatcher/auto-pairs', { 'tag': '*'  }
 
 " Toggle between *.c* and *.h* buffers.
 Plug 'ericcurtin/CurtineIncSw.vim'
@@ -69,7 +69,7 @@ nnoremap <C-k> 5k
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>l :BLines<CR>
 nnoremap <leader>h :History<CR>
-nnoremap <leader>ss :Find 
+nnoremap <leader>ss :Find
 " below is necessary for using <c-w>: https://vi.stackexchange.com/questions/16090/trouble-using-cword-in-mapping
 nnoremap <leader>sc :execute 'Find (struct\|class\|enum) (.+ )*?<c-r><c-w>'<cr>
 nnoremap <leader>sw :execute 'Find <c-r><c-w>'<cr>

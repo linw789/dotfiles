@@ -6,6 +6,7 @@ $ProjectNames_WorkPC = @{ `
     "pal" = "C:\develop\pal"; `
     "dot" = "C:\Projects\DotFiles"; `
     "dxcp" = "C:\develop\dxcp\drivers\dx\dxcp"; `
+    "kmd" = "C:\develop\kmd\drivers\kmd"; `
     "prj" = "C:\projects"
 }
 

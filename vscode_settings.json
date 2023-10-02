@@ -157,5 +157,8 @@
     "Substitute": "vim"
   },
   "vscode-neovim.neovimExecutablePaths.win32": "C:\\Program Files\\Neovim\\bin\\nvim.exe",
-  "vscode-neovim.neovimInitVimPaths.win32": "$HOME\\init.vim"
+  "vscode-neovim.neovimInitVimPaths.win32": "$HOME\\init.vim",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  }
 }

@@ -1,5 +1,6 @@
 {
-  "workbench.editor.showTabs": false,
+  "workbench.editor.showTabs": "single",
+  "workbench.activityBar.location": "top",
 
   "editor.lineNumbers": "relative",
   "editor.fontSize": 15,
@@ -8,28 +9,34 @@
   "editor.bracketPairColorization.enabled": false,
   "editor.inlayHints.enabled": false,
 
-  "files.trimTrailingWhitespace": true,
+  "files.trimTrailingWhitespace": false,
   "files.exclude": {
     "**/.git": false
   },
 
   "[json]": {
     "editor.insertSpaces": true,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "editor.wordWrap": "on"
   },
   "[cpp]": {
     "editor.wordWrap": "off"
+  },
+  "[python]": {
+    "editor.formatOnType": true
   },
 
   "rust-analyzer.lens.enable": false,
 
   "C_Cpp.dimInactiveRegions": true,
+  "C_Cpp.default.cppStandard": "c++20",
 
   "security.workspace.trust.untrustedFiles": "open",
 
   "cmake.configureOnOpen": false,
 
   "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.scrollback": 50000,
 
   "remote.SSH.remotePlatform": {
     "DESKTOP-N9CIN42.amd.com": "windows"
@@ -157,5 +164,15 @@
     "Substitute": "vim"
   },
   "vscode-neovim.neovimExecutablePaths.win32": "C:\\Program Files\\Neovim\\bin\\nvim.exe",
-  "vscode-neovim.neovimInitVimPaths.win32": "$HOME\\init.vim"
+  "vscode-neovim.neovimInitVimPaths.win32": "$HOME\\init.vim",
+
+  "security.allowedUNCHosts": [
+    "wsl.localhost"
+  ],
+
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+
+  "git.openRepositoryInParentFolders": "never"
 }

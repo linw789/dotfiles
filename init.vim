@@ -12,5 +12,6 @@ nnoremap <leader>bs <Cmd>call VSCodeNotify('bookmarksExplorer.focus')<CR>
 set ignorecase smartcase
 set incsearch
 set hlsearch
+set textwidth=100
 
 autocmd Filetype c,cpp set comments^=:///

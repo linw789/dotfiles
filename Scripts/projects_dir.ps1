@@ -2,10 +2,14 @@ $ArgName = $Args[0]
 
 $ProjectNames_WorkPC = @{ `
     "dd" = "C:\develop\devdriver"; `
+    "dd2" = "C:\develop\devdriver2"; `
     "tools" = "C:\develop\internal-tools"; `
+    "tools2" = "C:\develop\internal-tools-2"; `
     "pal" = "C:\develop\pal"; `
+    "pal2" = "C:\develop\pal2"; `
     "dot" = "C:\Projects\DotFiles"; `
-    "dxcp" = "C:\develop\dxcp\drivers\dx\dxcp"; `
+    "dxcp" = "C:\develop\dxcp"; `
+    "dxcp2" = "C:\develop\dxcp2"; `
     "kmd" = "C:\develop\kmd\drivers\kmd"; `
     "prj" = "C:\projects"
 }

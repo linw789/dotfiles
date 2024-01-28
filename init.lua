@@ -11,7 +11,7 @@ vim.o.smartcase = true
 vim.o.incsearch = true
 vim.o.hlsearch = true
 vim.o.cursorline = true
-vim.o.wrap = false
+vim.o.wrap = true
 vim.o.laststatus=2 -- always show filename in status bar even only one buffer is present
 
 vim.g.mapleader = ','

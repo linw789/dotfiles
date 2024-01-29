@@ -34,8 +34,9 @@ $ProjectNames_PersonalLaptop = @{ `
 }
 
 $ProjectNames_PersonalPC = @{ `
-    "prj" =  "C:\Projects"; `
-    "dot" = "C:\Projects\dotfiles";
+    "prj" = "C:\Projects"; `
+    "dot" = "C:\Projects\dotfiles"; `
+    "obs" = "C:\Users\Lin\Documents\Obsidian Vault\";
 }
 
 $HostName = [System.Net.Dns]::GetHostName()

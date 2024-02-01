@@ -50,23 +50,9 @@ require("lazy").setup({
             }
         }
     },
-    {'williamboman/mason.nvim'},
-    {'williamboman/mason-lspconfig.nvim'},
-    {
-        'VonHeikemen/lsp-zero.nvim', 
-        branch = 'v3.x',
-        lazy = true
-    },
-    {
-        'neovim/nvim-lspconfig',
-        dependencies = {
-            {'hrsh7th/cmp-nvim-lsp'}
-        }
-    },
-    {
-        'hrsh7th/nvim-cmp',
-        dependencies = {'L3MON4D3/LuaSnip'}
-    }
+    'neovim/nvim-lspconfig',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/nvim-cmp'
 })
 
 ----------------------------------------------------------------------------------
@@ -76,19 +62,3 @@ require("lazy").setup({
 local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', telescope.find_files, {noremap = true})
 vim.keymap.set('n', '<leader>fb', telescope.buffers, {noremap = true})
-
-----------------------------------------------------------------------------------
--- configure 'lsp-zero.nvim': https://github.com/nvim-telescope/telescope.nvim
-----------------------------------------------------------------------------------
-
-local lsp_zero = require('lsp-zero')
-lsp_zero.on_attach(function(client, bufnr)
-  lsp_zero.default_keymaps({buffer = bufnr})
-end)
-
-require('mason').setup({})
-require('mason-lspconfig').setup({
-  handlers = {
-    lsp_zero.default_setup
-  }
-})

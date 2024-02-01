@@ -3,13 +3,6 @@
 - sudo apt-get install gnome-tweak-tool
 - Go to "Keyboard & Mouse" -> "Additional Layout" -> "Ctrl position".
 
-
-## Install latest vim
-
-sudo add-apt-repository ppa:jonathonf/vim
-sudo apt update
-sudo apt install vim
-
 ## Install latest gcc 
 
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test

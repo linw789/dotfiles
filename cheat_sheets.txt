@@ -230,9 +230,6 @@ git log --name-status
 ## revert specific files to before 12dbf4 
 git checkout 12dbf4~1 -- src/file-to-restore.h
 
-Tig
-===========
-
 grep
 ===========
 
@@ -294,9 +291,6 @@ print the derived class type of a pointer declared as the parent class pointer t
 ## Show typeinfo of an variable
 `ptype var`
 
-Regex
-================
-
 MacBook
 ================
 
@@ -345,8 +339,3 @@ $(info VAR="$(VAR)")
 ## targets without commands
 
 http://aggregate.org/rfisher/Tutorials/Make/make3.html
-
-Alacritty
-==================
-
-## color scheme: https://github.com/eendroroy/alacritty-theme/blob/master/themes/darcula.yaml

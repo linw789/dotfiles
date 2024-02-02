@@ -91,9 +91,12 @@ require('lspconfig').clangd.setup({
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
-    local capabilities = vim.lsp.get_client_by_id(args.data.client_id).server_capabilities
-    if capabilities.definitionProvider then
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client.server_capabilities.definitionProvider then
       vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { buffer = args.buf })
+    end
+    if client.name == 'clangd' then
+      vim.keymap.set('n', '<leader>hs', '<cmd>ClangdSwitchSourceHeader<cr>', { buffer = args.buf })
     end
   end,
 })

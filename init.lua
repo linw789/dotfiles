@@ -12,7 +12,7 @@ vim.o.incsearch = true
 vim.o.hlsearch = true
 vim.o.cursorline = true
 vim.o.wrap = true
-vim.o.laststatus=2 -- always show filename in status bar even only one buffer is present
+vim.o.laststatus = 2 -- always show filename in status bar even only one buffer is present
 
 vim.g.mapleader = ','
 
@@ -62,3 +62,38 @@ require("lazy").setup({
 local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', telescope.find_files, {noremap = true})
 vim.keymap.set('n', '<leader>fb', telescope.buffers, {noremap = true})
+
+------------------------------------------------------------
+-- configure 'nvim-cmp': https://github.com/hrsh7th/nvim-cmp
+------------------------------------------------------------
+
+require('cmp').setup({ 
+    sources = { name = 'nvim_lsp' }
+})
+
+-----------------------------------------------------------------------
+-- configure 'nvim-cmp-lsp': 
+-----------------------------------------------------------------------
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+-----------------------------------------------------------------------
+-- configure 'nvim-lspconfig': https://github.com/neovim/nvim-lspconfig
+-----------------------------------------------------------------------
+
+require('lspconfig').clangd.setup({
+    capabilities = capabilities
+})
+
+----------------------
+-- set lsp keymappings
+----------------------
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local capabilities = vim.lsp.get_client_by_id(args.data.client_id).server_capabilities
+    if capabilities.definitionProvider then
+      vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { buffer = args.buf })
+    end
+  end,
+})

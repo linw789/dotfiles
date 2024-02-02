@@ -19,6 +19,7 @@ vim.g.mapleader = ','
 vim.keymap.set('i', 'jk', '<Esc>', { noremap = true })
 vim.keymap.set('n', '<C-j>', '5j', { noremap = true })
 vim.keymap.set('n', '<C-k>', '5k', { noremap = true })
+vim.keymap.set('n', '<leader>ex', '<cmd>Ex<cr>', { noremap = true })
 
 ------------------------------------------------------------------
 -- 'lazy.nvim' package manager: https://github.com/folke/lazy.nvim

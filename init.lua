@@ -18,12 +18,17 @@ vim.o.shell = 'pwsh'
 
 vim.g.mapleader = ','
 
-vim.keymap.set('i', 'jk', '<Esc>', { noremap = true })
+vim.keymap.set('i', 'jk', '<esc>', { noremap = true })
 vim.keymap.set('n', '<C-j>', '5j', { noremap = true })
 vim.keymap.set('n', '<C-k>', '5k', { noremap = true })
 vim.keymap.set('n', '<leader>ex', '<cmd>Ex<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>er', '<cmd>e $MYVIMRC<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>od', vim.diagnostic.open_float, { noremap = true })
+-- yank to system clipboard.
+vim.keymap.set('n', '<leader>y', '"+y', { noremap = true })
+vim.keymap.set('v', '<leader>y', '"+y', { noremap = true })
+-- '"_d' deletes the selected, and moves the cursor to the right of the deleted. 'P' pastes before the cursor.
+vim.keymap.set('s', '<leader>p', '"_dP', { noremap = true })
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "lua",

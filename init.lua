@@ -21,6 +21,7 @@ vim.keymap.set('n', '<C-j>', '5j', { noremap = true })
 vim.keymap.set('n', '<C-k>', '5k', { noremap = true })
 vim.keymap.set('n', '<leader>ex', '<cmd>Ex<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>er', '<cmd>e $MYVIMRC<cr>', { noremap = true })
+vim.keymap.set('n', '<leader>od', vim.diagnostic.open_float, { noremap = true })
 
 -- 'lazy.nvim'
 

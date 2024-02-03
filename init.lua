@@ -14,6 +14,7 @@ vim.o.hlsearch = true
 vim.o.cursorline = true
 vim.o.wrap = true
 vim.o.laststatus = 2 -- always show filename in status bar even only one buffer is present
+vim.o.shell = 'pwsh'
 
 vim.g.mapleader = ','
 

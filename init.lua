@@ -26,18 +26,26 @@ vim.keymap.set('n', '<leader>er', '<cmd>e $MYVIMRC<cr>', { noremap = true })
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    {
+        'AlexvZyl/nordic.nvim',
+        lazy = false,
+        priority = 1000,
+        config = function()
+            require('nordic').load()
+        end
+    },
     {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
     {
         'nvim-telescope/telescope.nvim',
@@ -52,10 +60,10 @@ require("lazy").setup({
     },
     'neovim/nvim-lspconfig',
     {
-	'hrsh7th/nvim-cmp',
-	dependencies = { 
-	    'L3MON4D3/LuaSnip',
-	    'hrsh7th/cmp-nvim-lsp'
+	    'hrsh7th/nvim-cmp',
+	    dependencies = { 
+	        'L3MON4D3/LuaSnip',
+	        'hrsh7th/cmp-nvim-lsp'
     	}
     }
 })
@@ -106,20 +114,20 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- configure 'nvim-lspconfig'
 
 require('lspconfig').clangd.setup({
-    capabilities = capabilities
+  capabilities = capabilities
 })
 
 -- set lsp keymappings
 
 vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client.server_capabilities.definitionProvider then
-      vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { buffer = args.buf })
-    end
-    if client.name == 'clangd' then
-      -- see: https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/clangd.lua#L4
-      vim.keymap.set('n', '<leader>hs', '<cmd>ClangdSwitchSourceHeader<cr>', { buffer = args.buf })
-    end
-  end,
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client.server_capabilities.definitionProvider then
+            vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { buffer = args.buf })
+        end
+        if client.name == 'clangd' then
+            -- see: https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/clangd.lua#L4
+        vim.keymap.set('n', '<leader>hs', '<cmd>ClangdSwitchSourceHeader<cr>', { buffer = args.buf })
+        end
+    end,
 })

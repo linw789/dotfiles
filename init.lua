@@ -29,6 +29,7 @@ vim.keymap.set('n', '<leader>y', '"+y', { noremap = true })
 vim.keymap.set('v', '<leader>y', '"+y', { noremap = true })
 -- '"_d' deletes the selected, and moves the cursor to the right of the deleted. 'P' pastes before the cursor.
 vim.keymap.set('s', '<leader>p', '"_dP', { noremap = true })
+vim.keymap.set('n', '<leader>v', '<C-v>', { noremap = true })
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "lua",

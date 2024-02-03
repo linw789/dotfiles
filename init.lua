@@ -3,7 +3,10 @@ vim.opt.backspace = { "indent", "eol", "start" }
 vim.o.ruler = true
 vim.o.number = true
 vim.o.relativenumber = true
+vim.o.tabstop = 4 -- See ':h tabstop' on how to use tabs.
+vim.o.shiftwidth = 4
 vim.o.expandtab = true
+vim.o.cindent = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.incsearch = true
@@ -20,6 +23,14 @@ vim.keymap.set('n', '<C-k>', '5k', { noremap = true })
 vim.keymap.set('n', '<leader>ex', '<cmd>Ex<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>er', '<cmd>e $MYVIMRC<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>od', vim.diagnostic.open_float, { noremap = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "lua",
+	callback = function()
+		vim.opt_local.tabstop = 2
+		vim.opt_local.shiftwidth = 2
+	end
+})
 
 -- 'lazy.nvim'
 

@@ -27,16 +27,18 @@ vim.keymap.set('n', '<leader>od', vim.diagnostic.open_float, { noremap = true })
 -- yank to system clipboard.
 vim.keymap.set('n', '<leader>y', '"+y', { noremap = true })
 vim.keymap.set('v', '<leader>y', '"+y', { noremap = true })
--- '"_d' deletes the selected, and moves the cursor to the right of the deleted. 'P' pastes before the cursor.
+-- '"_d' deletes and copies the selected to the void register so that the default register 
+-- default register, after which the cursor is at the right of the deleted. 'P' pastes before
+-- the cursor.
 vim.keymap.set('s', '<leader>p', '"_dP', { noremap = true })
 vim.keymap.set('n', '<leader>v', '<C-v>', { noremap = true })
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "lua",
-	callback = function()
-		vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
-	end
+  pattern = "lua",
+  callback = function()
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+  end
 })
 
 -- 'lazy.nvim'

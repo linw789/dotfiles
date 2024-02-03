@@ -20,10 +20,9 @@ vim.keymap.set('i', 'jk', '<Esc>', { noremap = true })
 vim.keymap.set('n', '<C-j>', '5j', { noremap = true })
 vim.keymap.set('n', '<C-k>', '5k', { noremap = true })
 vim.keymap.set('n', '<leader>ex', '<cmd>Ex<cr>', { noremap = true })
+vim.keymap.set('n', '<leader>er', '<cmd>e $MYVIMRC<cr>', { noremap = true })
 
-------------------------------------------------------------------
--- 'lazy.nvim' package manager: https://github.com/folke/lazy.nvim
-------------------------------------------------------------------
+-- 'lazy.nvim'
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -52,43 +51,65 @@ require("lazy").setup({
         }
     },
     'neovim/nvim-lspconfig',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/nvim-cmp'
+    {
+	'hrsh7th/nvim-cmp',
+	dependencies = { 
+	    'L3MON4D3/LuaSnip',
+	    'hrsh7th/cmp-nvim-lsp'
+    	}
+    }
 })
 
-----------------------------------------------------------------------------------
--- configure 'telescope.nvim': https://github.com/nvim-telescope/telescope.nvim
-----------------------------------------------------------------------------------
+-- configure 'telescope.nvim'
 
 local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', telescope.find_files, {noremap = true})
 vim.keymap.set('n', '<leader>fb', telescope.buffers, {noremap = true})
 
-------------------------------------------------------------
--- configure 'nvim-cmp': https://github.com/hrsh7th/nvim-cmp
-------------------------------------------------------------
+-- configure 'nvim-cmp'
 
-require('cmp').setup({ 
-    sources = { name = 'nvim_lsp' }
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+
+local select_behavior = { behavior = cmp.SelectBehavior.Insert }
+cmp.setup({ 
+    snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
+    completion = { autocomplete = {cmp.TriggerEvent.TextChanged} },
+    sources = { 
+        { name = 'nvim_lsp' },
+        { name = 'path' },
+        { name = 'buffer', keyword_length = 2 }
+    },
+    window = { documentation = cmp.config.window.bordered() },
+    mapping = {
+        ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item(select_behavior)
+            else
+                fallback()
+            end
+        end, {'i', 's'}),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item(select_behavior)
+            else
+                fallback()
+            end
+        end, {'i', 's'}),
+    }
 })
 
------------------------------------------------------------------------
--- configure 'nvim-cmp-lsp': 
------------------------------------------------------------------------
+-- configure 'nvim-cmp-lsp'
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
------------------------------------------------------------------------
--- configure 'nvim-lspconfig': https://github.com/neovim/nvim-lspconfig
------------------------------------------------------------------------
+-- configure 'nvim-lspconfig'
 
 require('lspconfig').clangd.setup({
     capabilities = capabilities
 })
 
-----------------------
 -- set lsp keymappings
-----------------------
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)

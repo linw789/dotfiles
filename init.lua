@@ -23,7 +23,7 @@ vim.keymap.set('n', '<C-j>', '5j', { noremap = true })
 vim.keymap.set('n', '<C-k>', '5k', { noremap = true })
 vim.keymap.set('n', '<leader>ex', '<cmd>Ex<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>er', '<cmd>e $MYVIMRC<cr>', { noremap = true })
-vim.keymap.set('n', '<leader>od', vim.diagnostic.open_float, { noremap = true })
+vim.keymap.set('n', '<leader>fd', vim.diagnostic.open_float, { noremap = true })
 -- yank to system clipboard.
 vim.keymap.set('n', '<leader>y', '"+y', { noremap = true })
 vim.keymap.set('v', '<leader>y', '"+y', { noremap = true })
@@ -132,7 +132,13 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 -- configure 'nvim-lspconfig'
 
-require('lspconfig').clangd.setup({
+local lspconfig = require('lspconfig')
+
+lspconfig.clangd.setup({
+  capabilities = capabilities
+})
+
+lspconfig.pylsp.setup({
   capabilities = capabilities
 })
 
@@ -143,6 +149,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     if client.server_capabilities.definitionProvider then
       vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { buffer = args.buf })
+      vim.keymap.set('n', '<leader>gc', vim.lsp.buf.hover, { buffer = args.buf })
     end
     if client.name == 'clangd' then
       -- see: https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/clangd.lua#L4

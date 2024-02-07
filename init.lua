@@ -23,6 +23,7 @@ vim.keymap.set('n', '<C-j>', '5j', { noremap = true })
 vim.keymap.set('n', '<C-k>', '5k', { noremap = true })
 vim.keymap.set('n', '<leader>ex', '<cmd>Ex<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>er', '<cmd>e $MYVIMRC<cr>', { noremap = true })
+-- TODO: Delete this and move diagnostic to the bottom.
 vim.keymap.set('n', '<leader>fd', vim.diagnostic.open_float, { noremap = true })
 -- yank to system clipboard.
 vim.keymap.set('n', '<leader>y', '"+y', { noremap = true })
@@ -30,8 +31,9 @@ vim.keymap.set('v', '<leader>y', '"+y', { noremap = true })
 -- '"_d' deletes and copies the selected to the void register so that the default register 
 -- default register, after which the cursor is at the right of the deleted. 'P' pastes before
 -- the cursor.
-vim.keymap.set('s', '<leader>p', '"_dP', { noremap = true })
+vim.keymap.set('x', '<leader>p', '"_dP', { noremap = true })
 vim.keymap.set('n', '<leader>v', '<C-v>', { noremap = true })
+-- TODO: Add shortcut to switch to term, or open one if not exists.
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "lua",
@@ -103,9 +105,9 @@ cmp.setup({
   snippet = { expand = function(args) luasnip.lsp_expand(args.body) end },
   completion = { autocomplete = {cmp.TriggerEvent.TextChanged} },
   sources = { 
-    { name = 'nvim_lsp' },
-    { name = 'path' },
-    { name = 'buffer', keyword_length = 2 }
+    { name = 'buffer', keyword_length = 2 },
+    { name = 'nvim_lsp', keyword_length = 2 },
+    { name = 'path', keyword_length = 2 },
   },
   window = { documentation = cmp.config.window.bordered() },
   mapping = {

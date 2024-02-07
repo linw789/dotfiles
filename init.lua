@@ -157,3 +157,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end,
 })
+
+-- configure lsp diagnostics
+
+-- https://neovim.io/doc/user/lsp.html#vim.lsp.diagnostic.on_publish_diagnostics()
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, 
+  {
+    underline = false, -- Windows terminal doesn't support squiggly underline.
+    virtual_text = true, 
+    update_in_insert = false, 
+    signs = false,
+  }
+)

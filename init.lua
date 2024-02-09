@@ -1,5 +1,5 @@
 vim.o.compatible = false
-vim.opt.backspace = { "indent", "eol", "start" }
+vim.opt.backspace = { 'indent', 'eol', 'start' }
 vim.o.ruler = true
 vim.o.number = true
 vim.o.relativenumber = true
@@ -15,6 +15,7 @@ vim.o.cursorline = true
 vim.o.wrap = true
 vim.o.laststatus = 2 -- always show filename in status bar even only one buffer is present
 vim.o.shell = 'pwsh'
+vim.o.modified = false -- avoid warning when closing terminal buffer
 
 vim.g.mapleader = ','
 
@@ -23,7 +24,6 @@ vim.keymap.set('n', '<C-j>', '5j', { noremap = true })
 vim.keymap.set('n', '<C-k>', '5k', { noremap = true })
 vim.keymap.set('n', '<leader>ex', '<cmd>Ex<cr>', { noremap = true })
 vim.keymap.set('n', '<leader>er', '<cmd>e $MYVIMRC<cr>', { noremap = true })
--- TODO: Delete this and move diagnostic to the bottom.
 vim.keymap.set('n', '<leader>fd', vim.diagnostic.open_float, { noremap = true })
 -- yank to system clipboard.
 vim.keymap.set('n', '<leader>y', '"+y', { noremap = true })
@@ -33,32 +33,41 @@ vim.keymap.set('v', '<leader>y', '"+y', { noremap = true })
 -- the cursor.
 vim.keymap.set('x', '<leader>p', '"_dP', { noremap = true })
 vim.keymap.set('n', '<leader>v', '<C-v>', { noremap = true })
--- TODO: Add shortcut to switch to term, or open one if not exists.
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "lua",
+vim.keymap.set('n', '<A-t>', function() 
+  win_count = #(vim.api.nvim_list_wins())
+  if win_count == 1 then
+    vim.api.nvim_open_win(0, true, { split = 'left', win = 0 })
+  end
+end, 
+{ noremap = true }) 
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'lua',
   callback = function()
     vim.opt_local.tabstop = 2
     vim.opt_local.shiftwidth = 2
+    vim.opt_local.cindent = false
+    vim.opt_local.smartindent = true
   end
 })
 
 -- 'lazy.nvim'
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
     lazypath,
   })
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+require('lazy').setup({
   {
     'AlexvZyl/nordic.nvim',
     lazy = false,
@@ -67,7 +76,7 @@ require("lazy").setup({
       require('nordic').load()
     end
   },
-  {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+  {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate'},
   {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.5',
@@ -76,8 +85,12 @@ require("lazy").setup({
       { 
         'nvim-telescope/telescope-fzf-native.nvim',
         build = 'cmake -S. -B build -D CMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
-      }
-    }
+      },
+      'nvim-telescope/telescope-live-grep-args.nvim',
+    },
+    config = function()
+      require('telescope').load_extension('live_grep_args')
+    end
   },
   'neovim/nvim-lspconfig',
   {
@@ -91,9 +104,23 @@ require("lazy").setup({
 
 -- configure 'telescope.nvim'
 
-local telescope = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', telescope.find_files, {noremap = true})
-vim.keymap.set('n', '<leader>fb', telescope.buffers, {noremap = true})
+local telescope = require('telescope')
+local telescope_builtin = require('telescope.builtin')
+local lga_actions = require('telescope-live-grep-args.actions')
+
+telescope.setup({
+  extensions = {
+    live_grep_args = {
+      mappings = {
+        ['<C-k'] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+      }
+    }
+  }
+})
+
+vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files, {noremap = true})
+vim.keymap.set('n', '<leader>fb', telescope_builtin.buffers, {noremap = true})
+vim.keymap.set('n', '<leader>fs', telescope.extensions.live_grep_args.live_grep_args, {noremap = true})
 
 -- configure 'nvim-cmp'
 
@@ -163,7 +190,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- configure lsp diagnostics
 
 -- https://neovim.io/doc/user/lsp.html#vim.lsp.diagnostic.on_publish_diagnostics()
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, 
   {
     underline = false, -- Windows terminal doesn't support squiggly underline.

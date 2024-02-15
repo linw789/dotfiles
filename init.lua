@@ -35,7 +35,7 @@ vim.keymap.set('x', '<leader>p', '"_dP', { noremap = true })
 vim.keymap.set('n', '<leader>v', '<C-v>', { noremap = true })
 
 vim.keymap.set('n', '<A-t>', function() 
-  win_count = #(vim.api.nvim_list_wins())
+  local win_count = #(vim.api.nvim_list_wins())
   if win_count == 1 then
     vim.api.nvim_open_win(0, true, { split = 'left', win = 0 })
   end
@@ -111,8 +111,9 @@ local lga_actions = require('telescope-live-grep-args.actions')
 telescope.setup({
   extensions = {
     live_grep_args = {
+      auto_quoting = true,
       mappings = {
-        ['<C-k'] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+        ['<C-s>'] = lga_actions.quote_prompt({ postfix = " --iglob " }),
       }
     }
   }
@@ -121,6 +122,18 @@ telescope.setup({
 vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files, {noremap = true})
 vim.keymap.set('n', '<leader>fb', telescope_builtin.buffers, {noremap = true})
 vim.keymap.set('n', '<leader>fs', telescope.extensions.live_grep_args.live_grep_args, {noremap = true})
+vim.keymap.set('v', '<leader>fs', function()
+  local text = '""'
+  local _, start_row, start_col, _ = unpack(vim.fn.getpos('v'))
+  local _, end_row, end_col, _ = unpack(vim.fn.getpos('.'))
+  if start_row == end_row then
+    local visual = vim.api.nvim_buf_get_text(0, start_row - 1, start_col - 1, end_row - 1, end_col, {})
+    if visual[1] then
+      text = '"' .. visual[1] .. '"'
+    end
+  end
+  telescope.extensions.live_grep_args.live_grep_args({ default_text = text })
+end, {noremap = true})
 
 -- configure 'nvim-cmp'
 

@@ -7,7 +7,7 @@
   "editor.tabCompletion": "on",
   "editor.minimap.enabled": false,
   "editor.bracketPairColorization.enabled": false,
-  "editor.inlayHints.enabled": false,
+  // "editor.inlayHints.enabled": false,
 
   "files.trimTrailingWhitespace": false,
   "files.exclude": {
@@ -32,6 +32,9 @@
   "C_Cpp.default.cppStandard": "c++20",
 
   "security.workspace.trust.untrustedFiles": "open",
+  "security.allowedUNCHosts": [
+    "wsl.localhost"
+  ],
 
   "cmake.configureOnOpen": false,
 
@@ -165,10 +168,6 @@
   },
   "vscode-neovim.neovimExecutablePaths.win32": "C:\\Program Files\\Neovim\\bin\\nvim.exe",
   "vscode-neovim.neovimInitVimPaths.win32": "$HOME\\init.vim",
-
-  "security.allowedUNCHosts": [
-    "wsl.localhost"
-  ],
 
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1

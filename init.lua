@@ -132,6 +132,20 @@ vim.keymap.set('v', '<leader>fs', function()
       text = '"' .. visual[1] .. '"'
     end
   end
+  local scope = ''
+  if vim.bo.filetype == 'cpp' then
+    scope = ' -tcpp'
+  elseif vim.bo.filetype == 'py' then
+    scope = ' -tpy'
+  elseif vim.bo.filetype == 'cmake'then
+    scope = ' -tcmake'
+  else
+    local buf_name = vim.fs.basename(vim.api.nvim_buf_get_name(0))
+    if buf_name == 'CMakeLists.txt' then
+        scope = ' -tcmake'
+    end
+  end
+  text = text .. scope
   telescope.extensions.live_grep_args.live_grep_args({ default_text = text })
 end, {noremap = true})
 

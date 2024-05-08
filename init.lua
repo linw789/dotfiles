@@ -14,8 +14,11 @@ vim.o.hlsearch = true
 vim.o.cursorline = true
 vim.o.wrap = true
 vim.o.laststatus = 2 -- always show filename in status bar even only one buffer is present
-vim.o.shell = 'pwsh'
 vim.o.modified = false -- avoid warning when closing terminal buffer
+
+if vim.loop.os_uname().sysname == "Windows_NT" then
+  vim.o.shell = 'pwsh'
+end
 
 vim.g.mapleader = ','
 

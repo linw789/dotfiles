@@ -18,6 +18,8 @@ vim.o.modified = false -- avoid warning when closing terminal buffer
 
 if vim.loop.os_uname().sysname == "Windows_NT" then
   vim.o.shell = 'pwsh'
+else
+  vim.o.shell = 'fish'
 end
 
 vim.g.mapleader = ','

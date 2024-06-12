@@ -1,7 +1,5 @@
 let mapleader=','
 
-inoremap jk <esc>
-
 nnoremap <C-j> 5j
 nnoremap <C-k> 5k
 nnoremap <leader>y "*y

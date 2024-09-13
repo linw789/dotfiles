@@ -1,4 +1,7 @@
 function Prompt {
+    # Show current directory in tab title.
+    $Host.UI.RawUI.WindowTitle = Get-Location
+
     $CmdPromptFullPath = $pwd
     $CmdPromptUser = [Security.Principal.WindowsIdentity]::GetCurrent();
     $LastCmdFinishTime = Get-Date -Format 'hh:mm:ss tt'

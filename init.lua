@@ -47,14 +47,38 @@ vim.keymap.set('n', '<A-t>', function()
 end, 
 { noremap = true }) 
 
+local set_indent = function(n)
+  vim.opt_local.shiftwidth = n
+  vim.opt_local.softtabstop = n
+  vim.opt_local.smartindent = true
+end
+
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'lua',
-  callback = function()
-    vim.opt_local.tabstop = 2
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.cindent = false
-    vim.opt_local.smartindent = true
-  end
+  callback = function() set_indent(2) end
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'javascript',
+  callback = function() set_indent(2) end
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'typescript',
+  callback = function() set_indent(2) end
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'json',
+  callback = function() set_indent(2) end
+})
+
+-- Cannot use 'FileType' because *.wxml is not a recognized file type in vim. 
+-- We can add wxml as a new file type, but it's too much trouble.
+vim.api.nvim_create_autocmd({'BufEnter', 'BufNewFile'}, {
+  pattern = {'*.wxml', '*.wxss', '*.wxs'},
+  -- callback = function() vim.schedule(function() print('debug linw') end) end
+  callback = function() set_indent(2) end
 })
 
 -----------------------------------------------------------------------------------------------------------------------

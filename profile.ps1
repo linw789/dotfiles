@@ -33,8 +33,8 @@ function Prompt {
 $HostName = [System.Net.Dns]::GetHostName()
 if ($HostName -eq "LAPTOP-F9KFD4OS") {
     $ScriptsDir = "C:\Projects\DotFiles\Scripts"
-} elseif ($HostName -eq "BDCLX-LINWANG") {
-    $ScriptsDir = "C:\develop\DotFiles\Scripts"
+} elseif ($HostName -eq "lin-windows-v3") {
+    $ScriptsDir = "C:\Users\Lin\Projects\DotFiles\Scripts"
 } else {
     $ScriptsDir = "C:\Projects\dotfiles\Scripts"
 }

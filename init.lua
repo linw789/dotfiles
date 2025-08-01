@@ -238,7 +238,12 @@ lspconfig.pylsp.setup({
 })
 
 lspconfig.rust_analyzer.setup({
-  capabilities = capabilities
+  capabilities = capabilities,
+  settings = {
+    ['rust-analyzer'] = {
+      rustfmt = { enableRangeFormatting = true },
+    },
+  },
 })
 
 -----------------------------------------------------------------------------------------------------------------------
@@ -255,6 +260,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
     if client.name == 'clangd' then
       -- see: https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/clangd.lua#L4
       vim.keymap.set('n', '<leader>hs', '<cmd>ClangdSwitchSourceHeader<cr>', { buffer = args.buf })
+    end
+    if client.name == 'rust_analyzer' then
+      print('detected rust-analyzer')
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ async = false })
+        end,
+      })
     end
   end,
 })

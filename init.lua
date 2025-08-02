@@ -264,7 +264,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
     if client.name == 'rust_analyzer' then
       vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = 'rust',
+        pattern = '*.rs',
         buffer = bufnr,
         callback = function()
           vim.lsp.buf.format({ async = false })

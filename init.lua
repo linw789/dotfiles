@@ -263,8 +263,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set('n', '<leader>hs', '<cmd>ClangdSwitchSourceHeader<cr>', { buffer = args.buf })
     end
     if client.name == 'rust_analyzer' then
-      print('detected rust-analyzer')
       vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = 'rust',
         buffer = bufnr,
         callback = function()
           vim.lsp.buf.format({ async = false })

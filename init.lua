@@ -267,13 +267,21 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set('n', '<leader>hs', '<cmd>ClangdSwitchSourceHeader<cr>', { buffer = args.buf })
     end
     if client.name == 'rust_analyzer' then
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = '*.rs',
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format({ async = false })
+      -- Format Rust code. N.B. there is no warning/error when formatting fails due to code errors.
+      vim.keymap.set('n', '<leader>rf',
+        function()
+          vim.lsp.buf.format()
         end,
-      })
+        { noremap = true })
+
+      -- This automatically formats the rust on every write. But it's too slow.
+      -- vim.api.nvim_create_autocmd("BufWritePre", {
+      --   pattern = '*.rs',
+      --   buffer = bufnr,
+      --   callback = function()
+      --     vim.lsp.buf.format({ async = false })
+      --   end,
+      -- })
     end
   end,
 })

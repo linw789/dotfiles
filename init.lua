@@ -15,6 +15,7 @@ vim.o.cursorline = true
 vim.o.wrap = true
 vim.o.laststatus = 2 -- always show filename in status bar even only one buffer is present
 vim.o.modified = false -- avoid warning when closing terminal buffer
+vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 
 if vim.loop.os_uname().sysname == "Windows_NT" then
   vim.o.shell = 'pwsh'
@@ -130,6 +131,12 @@ require('lazy').setup({
       'L3MON4D3/LuaSnip',
       'hrsh7th/cmp-nvim-lsp'
     }
+  },
+  {
+    'SmiteshP/nvim-navic',
+    dependencies = {
+      'neovim/nvim-lspconfig'
+    }
   }
 })
 
@@ -228,14 +235,24 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- configure 'nvim-lspconfig'
 -----------------------------------------------------------------------------------------------------------------------
 
+local navic = require('nvim-navic')
+local function navic_on_lsp_attach(client, bufnr)
+  if client.server_capabilities.documentSymbolProvider then
+    print("navic on attach")
+    navic.attach(client, bufnr)
+  end
+end
+
 local lspconfig = require('lspconfig')
 
 lspconfig.clangd.setup({
-  capabilities = capabilities
+  capabilities = capabilities,
+  on_attach = navic_on_lsp_attach
 })
 
 lspconfig.pylsp.setup({
-  capabilities = capabilities
+  capabilities = capabilities,
+  on_attach = navic_on_lsp_attach
 })
 
 lspconfig.rust_analyzer.setup({
@@ -245,10 +262,12 @@ lspconfig.rust_analyzer.setup({
       rustfmt = { enableRangeFormatting = true },
     },
   },
+  on_attach = navic_on_lsp_attach
 })
 
 lspconfig.glsl_analyzer.setup({
-  capabilities = capabilities
+  capabilities = capabilities,
+  on_attach = navic_on_lsp_attach
 })
 
 -----------------------------------------------------------------------------------------------------------------------
@@ -286,9 +305,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 -- configure lsp diagnostics
------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 
 -- https://neovim.io/doc/user/lsp.html#vim.lsp.diagnostic.on_publish_diagnostics()
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
@@ -300,3 +319,8 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
     signs = false,
   }
 )
+
+----------------------------------------------------------------------------------------------------
+
+--- local esn = require('init')
+--- vim.keymap.set('n', '<leader>esn', esn.open, { noremap = true })

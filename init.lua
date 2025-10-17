@@ -238,7 +238,6 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local navic = require('nvim-navic')
 local function navic_on_lsp_attach(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
-    print("navic on attach")
     navic.attach(client, bufnr)
   end
 end

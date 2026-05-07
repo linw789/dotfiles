@@ -162,6 +162,9 @@ telescope.setup({
 vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files, {noremap = true})
 vim.keymap.set('n', '<leader>fb', telescope_builtin.buffers, {noremap = true})
 vim.keymap.set('n', '<leader>fs', telescope.extensions.live_grep_args.live_grep_args, {noremap = true})
+vim.keymap.set('n', '<leader>fs', telescope.extensions.live_grep_args.live_grep_args, {noremap = true})
+-- Bring up the previous search results.
+vim.keymap.set('n', '<leader>fr', require('telescope.builtin').resume)
 vim.keymap.set('v', '<leader>fs', function()
   local text = '""'
   local _, start_row, start_col, _ = unpack(vim.fn.getpos('v'))

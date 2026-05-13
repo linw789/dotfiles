@@ -249,11 +249,13 @@ vim.lsp.config('clangd', {
   capabilities = capabilities,
   on_attach = navic_on_lsp_attach
 })
+vim.lsp.enable('clangd')
 
 vim.lsp.config('pylsp', {
   capabilities = capabilities,
   on_attach = navic_on_lsp_attach
 })
+vim.lsp.enable('pylsp')
 
 vim.lsp.config('rust_analyzer', {
   capabilities = capabilities,
@@ -264,11 +266,13 @@ vim.lsp.config('rust_analyzer', {
   },
   on_attach = navic_on_lsp_attach
 })
+vim.lsp.enable('rust_analyzer')
 
 vim.lsp.config('glsl_analyzer', {
   capabilities = capabilities,
   on_attach = navic_on_lsp_attach
 })
+vim.lsp.enable('glsl_analyzer')
 
 -----------------------------------------------------------------------------------------------------------------------
 -- set lsp keymappings
@@ -309,14 +313,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- configure lsp diagnostics
 ----------------------------------------------------------------------------------------------------
 
--- https://neovim.io/doc/user/lsp.html#vim.lsp.diagnostic.on_publish_diagnostics()
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, 
-  {
-    underline = false, -- Windows terminal doesn't support squiggly underline.
-    virtual_text = true, 
-    update_in_insert = false, 
-    signs = false,
-  }
-)
+vim.diagnostic.config({
+  underline = false, -- Windows terminal don't support swiggly underline.
+  signs = false,
+  virtual_text = true,
+})
 

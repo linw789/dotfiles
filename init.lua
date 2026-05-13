@@ -245,19 +245,17 @@ local function navic_on_lsp_attach(client, bufnr)
   end
 end
 
-local lspconfig = require('lspconfig')
-
-lspconfig.clangd.setup({
+vim.lsp.config('clangd', {
   capabilities = capabilities,
   on_attach = navic_on_lsp_attach
 })
 
-lspconfig.pylsp.setup({
+vim.lsp.config('pylsp', {
   capabilities = capabilities,
   on_attach = navic_on_lsp_attach
 })
 
-lspconfig.rust_analyzer.setup({
+vim.lsp.config('rust_analyzer', {
   capabilities = capabilities,
   settings = {
     ['rust-analyzer'] = {
@@ -267,7 +265,7 @@ lspconfig.rust_analyzer.setup({
   on_attach = navic_on_lsp_attach
 })
 
-lspconfig.glsl_analyzer.setup({
+vim.lsp.config('glsl_analyzer', {
   capabilities = capabilities,
   on_attach = navic_on_lsp_attach
 })
@@ -322,7 +320,3 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   }
 )
 
-----------------------------------------------------------------------------------------------------
-
---- local esn = require('init')
---- vim.keymap.set('n', '<leader>esn', esn.open, { noremap = true })

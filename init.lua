@@ -238,22 +238,13 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- configure 'nvim-lspconfig'
 -----------------------------------------------------------------------------------------------------------------------
 
-local navic = require('nvim-navic')
-local function navic_on_lsp_attach(client, bufnr)
-  if client.server_capabilities.documentSymbolProvider then
-    navic.attach(client, bufnr)
-  end
-end
-
 vim.lsp.config('clangd', {
   capabilities = capabilities,
-  on_attach = navic_on_lsp_attach
 })
 vim.lsp.enable('clangd')
 
 vim.lsp.config('pylsp', {
   capabilities = capabilities,
-  on_attach = navic_on_lsp_attach
 })
 vim.lsp.enable('pylsp')
 
@@ -264,31 +255,34 @@ vim.lsp.config('rust_analyzer', {
       rustfmt = { enableRangeFormatting = true },
     },
   },
-  on_attach = navic_on_lsp_attach
 })
 vim.lsp.enable('rust_analyzer')
 
 vim.lsp.config('glsl_analyzer', {
   capabilities = capabilities,
-  on_attach = navic_on_lsp_attach
 })
 vim.lsp.enable('glsl_analyzer')
 
------------------------------------------------------------------------------------------------------------------------
--- set lsp keymappings
------------------------------------------------------------------------------------------------------------------------
+local navic = require('nvim-navic')
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+    if client.server_capabilities.documentSymbolProvider then
+      navic.attach(client, args.buf)
+    end
+
     if client.server_capabilities.definitionProvider then
       vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { buffer = args.buf })
       vim.keymap.set('n', '<leader>gc', vim.lsp.buf.hover, { buffer = args.buf })
     end
+
     if client.name == 'clangd' then
-      -- see: https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/clangd.lua#L4
-      vim.keymap.set('n', '<leader>hs', '<cmd>ClangdSwitchSourceHeader<cr>', { buffer = args.buf })
+      -- see: https://github.com/neovim/nvim-lspconfig/blob/master/lsp/clangd.lua#L96C50-L96C77
+      vim.keymap.set('n', '<leader>hs', '<cmd>LspClangdSwitchSourceHeader<cr>', { buffer = args.buf })
     end
+
     if client.name == 'rust_analyzer' then
       -- Format Rust code. N.B. there is no warning/error when formatting fails due to code errors.
       vim.keymap.set('n', '<leader>rf',

@@ -3,9 +3,6 @@ vim.opt.backspace = { 'indent', 'eol', 'start' }
 vim.o.ruler = true
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.tabstop = 4 -- See ':h tabstop' on how to use tabs.
-vim.o.shiftwidth = 4
-vim.o.expandtab = true
 vim.o.cindent = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -49,36 +46,15 @@ end,
 { noremap = true }) 
 
 local set_indent = function(n)
-  vim.opt_local.shiftwidth = n
-  vim.opt_local.softtabstop = n
+	vim.o.tabstop = n
+	vim.o.shiftwidth = n
+	vim.o.softtabstop = -1 -- follows shiftwidth
+	vim.o.expandtab = false
   vim.opt_local.smartindent = true
 end
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'lua',
-  callback = function() set_indent(2) end
-})
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'javascript',
-  callback = function() set_indent(2) end
-})
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'typescript',
-  callback = function() set_indent(2) end
-})
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'json',
-  callback = function() set_indent(2) end
-})
-
--- Cannot use 'FileType' because *.wxml is not a recognized file type in vim. 
--- We can add wxml as a new file type, but it's too much trouble.
-vim.api.nvim_create_autocmd({'BufEnter', 'BufNewFile'}, {
-  pattern = {'*.wxml', '*.wxss', '*.wxs'},
-  -- callback = function() vim.schedule(function() print('debug linw') end) end
+  pattern = '*',
   callback = function() set_indent(2) end
 })
 
@@ -161,7 +137,6 @@ telescope.setup({
 
 vim.keymap.set('n', '<leader>ff', telescope_builtin.find_files, {noremap = true})
 vim.keymap.set('n', '<leader>fb', telescope_builtin.buffers, {noremap = true})
-vim.keymap.set('n', '<leader>fs', telescope.extensions.live_grep_args.live_grep_args, {noremap = true})
 vim.keymap.set('n', '<leader>fs', telescope.extensions.live_grep_args.live_grep_args, {noremap = true})
 -- Bring up the previous search results.
 vim.keymap.set('n', '<leader>fr', require('telescope.builtin').resume)

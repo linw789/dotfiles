@@ -45,17 +45,22 @@ vim.keymap.set('n', '<A-t>', function()
 end, 
 { noremap = true }) 
 
-local set_indent = function(n)
-	vim.o.tabstop = n
-	vim.o.shiftwidth = n
-	vim.o.softtabstop = -1 -- follows shiftwidth
-	vim.o.expandtab = false
-	vim.opt_local.smartindent = true
+local set_indent = function(tabstop, expandtab)
+	vim.bo.tabstop = tabstop
+	vim.bo.shiftwidth = tabstop
+	vim.bo.softtabstop = -1 -- follows shiftwidth
+	vim.bo.expandtab = expandtab
+	vim.bo.smartindent = true
 end
 
 vim.api.nvim_create_autocmd('FileType', {
-	pattern = '*',
-	callback = function() set_indent(2) end
+	callback = function(opts)
+		if opts.match == 'zig' then
+			set_indent(4, true)
+		else 
+			set_indent(2, false)
+		end
+	end
 })
 
 -----------------------------------------------------------------------------------------------------------------------
@@ -113,6 +118,9 @@ require('lazy').setup({
 		dependencies = {
 			'neovim/nvim-lspconfig'
 		}
+	},
+	{
+		'https://codeberg.org/ziglang/zig.vim',
 	},
 })
 
@@ -237,6 +245,18 @@ vim.lsp.config('glsl_analyzer', {
 	capabilities = capabilities,
 })
 vim.lsp.enable('glsl_analyzer')
+
+vim.lsp.config('zls', {
+	capabilities = capabilities,
+	filetypes = { 'zig' },
+	root_markers = { 'build.zig' },
+	settings = {
+		{
+			zls = {}
+		}
+	},
+})
+vim.lsp.enable('zls')
 
 local navic = require('nvim-navic')
 

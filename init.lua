@@ -122,6 +122,9 @@ require('lazy').setup({
 	{
 		'https://codeberg.org/ziglang/zig.vim',
 	},
+	{
+		'https://codeberg.org/linwoodwood/quickterm.nvim',
+	},
 })
 
 -----------------------------------------------------------------------------------------------------------------------
@@ -314,3 +317,9 @@ vim.diagnostic.config({
 	virtual_text = true,
 })
 
+----------------------------------------------------------------------------------------------------
+-- configure quickterm
+----------------------------------------------------------------------------------------------------
+
+local quickterm = require('quickterm')
+vim.keymap.set({'n', 't'}, '<A-`>', quickterm.toggle_terminal, { noremap = true })
